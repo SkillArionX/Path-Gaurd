@@ -22,7 +22,7 @@ def _send_request(frame, prompt):
     image_base64 = base64.b64encode(buffer).decode("utf-8")
 
     response = client.chat.completions.create(
-        model="qwen/qwen2.5-vl-72b-instruct",
+        model="openrouter/free",
         messages=[
             {
                 "role": "user",
@@ -40,7 +40,7 @@ def _send_request(frame, prompt):
                 ]
             }
         ],
-        max_tokens=512,
+        max_tokens=100,
         temperature=0.2,
     )
 
@@ -91,14 +91,14 @@ Keep the answer concise and suitable for text-to-speech.
 """
 
     response = client.chat.completions.create(
-        model="qwen/qwen2.5-vl-72b-instruct",
+        model="openrouter/free",
         messages=[
             {
                 "role": "user",
                 "content": prompt
             }
         ],
-        max_tokens=512,
+        max_tokens=100,
         temperature=0.2,
     )
 
