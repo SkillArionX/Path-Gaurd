@@ -61,7 +61,7 @@ import json
 import re
 from typing import Optional, List, Tuple, Union
 
-from navigation_engine import DetectedObject, Position
+from .navigation_engine import DetectedObject, Position
 
 DEFAULT_CONFIDENCE = 0.85  # placeholder -- see CONFIDENCE NOTE above
 
