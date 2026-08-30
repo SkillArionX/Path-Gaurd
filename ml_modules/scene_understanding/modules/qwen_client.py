@@ -38,7 +38,7 @@ def _send_request(frame, prompt):
                 ]
             }
         ],
-        max_tokens=512,
+        max_tokens=100,
         temperature=0.2,
     )
 
@@ -96,7 +96,7 @@ Keep the answer concise and suitable for text-to-speech.
                 "content": prompt
             }
         ],
-        max_tokens=512,
+        max_tokens=100,
         temperature=0.2,
     )
 
