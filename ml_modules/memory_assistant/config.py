@@ -1,4 +1,4 @@
-"""Application configuration loaded from environment variables."""
+﻿"""Application configuration loaded from environment variables."""
 
 from pydantic_settings import BaseSettings
 
@@ -25,7 +25,10 @@ class Settings(BaseSettings):
     max_location_history: int = 5
     max_navigation_history: int = 5
 
-    model_config = {"env_prefix": "PATHGUARD_", "env_file": ".env", "env_file_encoding": "utf-8"}
+    model_config = {"env_prefix": "PATHGUARD_", "env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
 
 settings = Settings()
+
+
+

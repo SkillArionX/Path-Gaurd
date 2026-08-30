@@ -1,4 +1,4 @@
-"""Event models for incoming module events (OCR, Object, Location, Navigation)."""
+﻿"""Event models for incoming module events (OCR, Object, Location, Navigation)."""
 
 from datetime import datetime
 
@@ -90,3 +90,5 @@ def parse_event(data: dict) -> BaseEvent:
     if model is None:
         raise ValueError(f"Unknown event type: {event_type}")
     return model.model_validate(data)
+
+

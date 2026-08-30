@@ -1,10 +1,10 @@
-"""Navigation memory: stores the latest navigation instruction per session."""
+﻿"""Navigation memory: stores the latest navigation instruction per session."""
 
 from collections import defaultdict, deque
 from datetime import datetime, timezone
 
-from app.models.events import NavigationPayload
-from app.models.memory_models import StoredNavigation
+from ml_modules.memory_assistant.models.events import NavigationPayload
+from ml_modules.memory_assistant.models.memory_models import StoredNavigation
 
 
 class NavigationMemory:
@@ -37,3 +37,5 @@ class NavigationMemory:
     def clear(self, session_id: str) -> None:
         self._last.pop(session_id, None)
         self._history.pop(session_id, None)
+
+

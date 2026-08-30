@@ -1,4 +1,4 @@
-"""Memory and context models used across the module."""
+﻿"""Memory and context models used across the module."""
 
 from datetime import datetime
 
@@ -51,3 +51,5 @@ class ConversationContext(BaseModel):
     recent_objects: list[StoredObject] = Field(default_factory=list)
     last_location: StoredLocation | None = None
     last_navigation: StoredNavigation | None = None
+
+

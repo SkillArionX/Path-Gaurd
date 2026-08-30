@@ -43,49 +43,41 @@ pygame.mixer.init()
 
 def speak(text):
 
-    def run():
+    temp_path = None
 
-        temp_path = None
+    try:
+        print("\nSpeaking...")
+        print(text)
 
+        tts = gTTS(
+            text=text,
+            lang=speech_language_code,
+            slow=False
+        )
+
+        with tempfile.NamedTemporaryFile(
+            suffix=".mp3",
+            delete=False
+        ) as f:
+            temp_path = f.name
+
+        tts.save(temp_path)
+
+        pygame.mixer.music.load(temp_path)
+        pygame.mixer.music.play()
+
+        while pygame.mixer.music.get_busy():
+            time.sleep(0.1)
+
+    except Exception as e:
+        print("Speech Error:", e)
+
+    finally:
         try:
-
-            print("\nSpeaking...")
-            print(text)
-
-            tts = gTTS(
-                text=text,
-                lang=speech_language_code,
-                slow=False
-            )
-
-            with tempfile.NamedTemporaryFile(
-                suffix=".mp3",
-                delete=False
-            ) as f:
-                temp_path = f.name
-
-            tts.save(temp_path)
-
-            pygame.mixer.music.load(temp_path)
-            pygame.mixer.music.play()
-
-            while pygame.mixer.music.get_busy():
-                time.sleep(0.1)
-
-        except Exception as e:
-            print("Speech Error:", e)
-
-        finally:
-            try:
-                if temp_path and os.path.exists(temp_path):
-                    os.remove(temp_path)
-            except:
-                pass
-
-    threading.Thread(
-        target=run,
-        daemon=True
-    ).start()
+            if temp_path and os.path.exists(temp_path):
+                os.remove(temp_path)
+        except:
+            pass
 
 # ==========================================
 # VOICE COMMANDS
@@ -180,7 +172,7 @@ def analyze_medicine(frame):
     )
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.6-flash",
         contents=[
             f"""
             Identify this medicine.
@@ -330,4 +322,3 @@ running = False
 cap.release()
 cv2.destroyAllWindows()
 pygame.mixer.quit()
-

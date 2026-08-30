@@ -1,10 +1,10 @@
-"""Location memory: stores the latest GPS location per session."""
+﻿"""Location memory: stores the latest GPS location per session."""
 
 from collections import defaultdict, deque
 from datetime import datetime, timezone
 
-from app.models.events import LocationPayload
-from app.models.memory_models import StoredLocation
+from ml_modules.memory_assistant.models.events import LocationPayload
+from ml_modules.memory_assistant.models.memory_models import StoredLocation
 
 
 class LocationMemory:
@@ -38,3 +38,5 @@ class LocationMemory:
     def clear(self, session_id: str) -> None:
         self._last.pop(session_id, None)
         self._history.pop(session_id, None)
+
+

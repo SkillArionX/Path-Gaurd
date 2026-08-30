@@ -1,4 +1,4 @@
-"""API request/response schemas."""
+﻿"""API request/response schemas."""
 
 from pydantic import BaseModel, Field
 
@@ -45,3 +45,5 @@ class TranscriptionResponse(BaseModel):
     session_id: str
     text: str | None
     success: bool
+
+

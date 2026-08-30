@@ -1,4 +1,4 @@
-"""Gemini API client for generating context-aware responses."""
+﻿"""Gemini API client for generating context-aware responses."""
 
 import json
 import logging
@@ -6,7 +6,7 @@ import time
 
 import httpx
 
-from app.config import settings
+from ml_modules.memory_assistant.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -114,3 +114,5 @@ class GeminiClient:
         except (httpx.HTTPStatusError, httpx.RequestError, json.JSONDecodeError, KeyError) as e:
             logger.error("Gemini API JSON call failed: %s", e)
             return {"error": str(e)}
+
+

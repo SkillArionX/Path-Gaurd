@@ -1,11 +1,11 @@
-"""SessionMemory: aggregates all sub-memories per session with isolation."""
+﻿"""SessionMemory: aggregates all sub-memories per session with isolation."""
 
-from app.memory.conversation_memory import ConversationMemory
-from app.memory.location_memory import LocationMemory
-from app.memory.navigation_memory import NavigationMemory
-from app.memory.object_memory import ObjectMemory
-from app.memory.ocr_memory import OCRMemory
-from app.models.events import (
+from ml_modules.memory_assistant.memory.conversation_memory import ConversationMemory
+from ml_modules.memory_assistant.memory.location_memory import LocationMemory
+from ml_modules.memory_assistant.memory.navigation_memory import NavigationMemory
+from ml_modules.memory_assistant.memory.object_memory import ObjectMemory
+from ml_modules.memory_assistant.memory.ocr_memory import OCRMemory
+from ml_modules.memory_assistant.models.events import (
     BaseEvent,
     LocationEvent,
     NavigationEvent,
@@ -58,3 +58,5 @@ class SessionMemory:
 
     def get_all_sessions(self) -> list[str]:
         return list(self._active_sessions)
+
+

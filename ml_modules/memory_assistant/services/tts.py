@@ -1,9 +1,9 @@
-"""Text-to-Speech service interface."""
+﻿"""Text-to-Speech service interface."""
 
 import logging
 from abc import ABC, abstractmethod
 
-from app.config import settings
+from ml_modules.memory_assistant.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -173,3 +173,5 @@ def create_tts_provider() -> TTSProvider:
     else:
         logger.warning("Unknown TTS provider '%s', using text-only", provider)
         return TextOnlyTTS()
+
+

@@ -1,10 +1,10 @@
-"""Object memory: stores recent detected objects per session."""
+﻿"""Object memory: stores recent detected objects per session."""
 
 from collections import defaultdict, deque
 from datetime import datetime, timezone
 
-from app.models.events import ObjectPayload
-from app.models.memory_models import StoredObject
+from ml_modules.memory_assistant.models.events import ObjectPayload
+from ml_modules.memory_assistant.models.memory_models import StoredObject
 
 
 class ObjectMemory:
@@ -42,3 +42,5 @@ class ObjectMemory:
     def clear(self, session_id: str) -> None:
         self._recent.pop(session_id, None)
         self._history.pop(session_id, None)
+
+

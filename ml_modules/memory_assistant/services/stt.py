@@ -1,9 +1,9 @@
-"""Speech-to-Text service interface."""
+﻿"""Speech-to-Text service interface."""
 
 import logging
 from abc import ABC, abstractmethod
 
-from app.config import settings
+from ml_modules.memory_assistant.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -129,3 +129,5 @@ def create_stt_provider() -> STTProvider:
     else:
         logger.warning("Unknown STT provider '%s', falling back to Gemini", provider)
         return GeminiSTT()
+
+

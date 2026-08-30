@@ -1,13 +1,13 @@
-"""ConversationEngine: orchestrates STT, context, Gemini, and TTS pipeline."""
+﻿"""ConversationEngine: orchestrates STT, context, Gemini, and TTS pipeline."""
 
 import logging
 
-from app.assistant.gemini_client import GeminiClient
-from app.assistant.prompt_builder import PromptBuilder
-from app.context.context_manager import ContextManager
-from app.memory.session_memory import SessionMemory
-from app.services.stt import STTProvider, create_stt_provider
-from app.services.tts import TTSProvider, create_tts_provider
+from ml_modules.memory_assistant.assistant.gemini_client import GeminiClient
+from ml_modules.memory_assistant.assistant.prompt_builder import PromptBuilder
+from ml_modules.memory_assistant.context.context_manager import ContextManager
+from ml_modules.memory_assistant.memory.session_memory import SessionMemory
+from ml_modules.memory_assistant.services.stt import STTProvider, create_stt_provider
+from ml_modules.memory_assistant.services.tts import TTSProvider, create_tts_provider
 
 logger = logging.getLogger(__name__)
 
@@ -71,3 +71,5 @@ class ConversationEngine:
 
     def is_session_active(self, session_id: str) -> bool:
         return self.session_memory.is_active(session_id)
+
+

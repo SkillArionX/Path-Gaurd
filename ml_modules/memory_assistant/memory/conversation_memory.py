@@ -1,10 +1,10 @@
-"""Conversation memory: stores user/assistant turns per session."""
+﻿"""Conversation memory: stores user/assistant turns per session."""
 
 from collections import defaultdict, deque
 from datetime import datetime, timezone
 from typing import Deque
 
-from app.models.memory_models import ConversationTurn
+from ml_modules.memory_assistant.models.memory_models import ConversationTurn
 
 
 class ConversationMemory:
@@ -32,3 +32,5 @@ class ConversationMemory:
     @property
     def active_sessions(self) -> list[str]:
         return [sid for sid, msgs in self._messages.items() if msgs]
+
+

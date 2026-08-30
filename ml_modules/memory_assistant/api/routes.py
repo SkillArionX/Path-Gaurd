@@ -1,4 +1,4 @@
-"""API routes for the AI Memory & Conversation module."""
+﻿"""API routes for the AI Memory & Conversation module."""
 
 import base64
 import logging
@@ -15,8 +15,8 @@ from app.api.schemas import (
     SessionResponse,
     TranscriptionResponse,
 )
-from app.assistant.conversation_engine import ConversationEngine
-from app.models.events import parse_event
+from ml_modules.memory_assistant.assistant.conversation_engine import ConversationEngine
+from ml_modules.memory_assistant.models.events import parse_event
 
 logger = logging.getLogger(__name__)
 
@@ -115,3 +115,5 @@ def session_status(session_id: str) -> SessionResponse:
         session_id=session_id,
         status="active" if active else "inactive",
     )
+
+

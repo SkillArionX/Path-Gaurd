@@ -1,10 +1,10 @@
-"""OCR memory: stores detected text results per session."""
+﻿"""OCR memory: stores detected text results per session."""
 
 from collections import defaultdict, deque
 from datetime import datetime, timezone
 
-from app.models.events import OCRPayload
-from app.models.memory_models import StoredOCR
+from ml_modules.memory_assistant.models.events import OCRPayload
+from ml_modules.memory_assistant.models.memory_models import StoredOCR
 
 
 class OCRMemory:
@@ -35,3 +35,5 @@ class OCRMemory:
     def clear(self, session_id: str) -> None:
         self._last.pop(session_id, None)
         self._history.pop(session_id, None)
+
+

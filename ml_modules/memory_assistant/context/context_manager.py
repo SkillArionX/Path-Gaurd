@@ -1,7 +1,7 @@
-"""Context manager: builds relevant context and resolves references."""
+﻿"""Context manager: builds relevant context and resolves references."""
 
-from app.memory.session_memory import SessionMemory
-from app.models.memory_models import ConversationContext, ConversationTurn
+from ml_modules.memory_assistant.memory.session_memory import SessionMemory
+from ml_modules.memory_assistant.models.memory_models import ConversationContext, ConversationTurn
 
 
 # Reference words that imply the user is pointing to something in context
@@ -108,3 +108,5 @@ class ContextManager:
     def end_session(self, session_id: str) -> None:
         """Clear all memory for a session."""
         self.session_memory.deactivate(session_id)
+
+

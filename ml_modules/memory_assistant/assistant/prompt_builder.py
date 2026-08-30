@@ -1,6 +1,6 @@
-"""Prompt builder: constructs prompts with only relevant context for Gemini."""
+﻿"""Prompt builder: constructs prompts with only relevant context for Gemini."""
 
-from app.models.memory_models import ConversationContext
+from ml_modules.memory_assistant.models.memory_models import ConversationContext
 
 SYSTEM_PROMPT = """You are the Path Guard voice assistant for visually impaired users.
 Answer using the provided context.
@@ -82,3 +82,5 @@ class PromptBuilder:
         context_block = "\n\n".join(sections) if sections else "No relevant context available."
 
         return f"CONTEXT:\n{context_block}\n\nUSER QUESTION:\n{message}"
+
+
