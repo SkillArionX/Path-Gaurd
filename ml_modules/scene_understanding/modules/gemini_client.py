@@ -7,26 +7,19 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import errors
 
+from ml_modules.scene_understanding.modules.prompt import (
+    SCENE_PROMPT,
+    QUESTION_PROMPT
+)
+
 load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-MODEL_NAME = "gemini-2.0-flash"
+MODEL_NAME = "gemini-3.6-flash"
 
 
-def analyze_scene(frame, question, max_retries=5):
-    """
-    Analyze the given camera frame using Gemini Vision.
-
-    Returns:
-        JSON string containing:
-        {
-            "path_clear": bool,
-            "summary": "...",
-            "objects": [...]
-        }
-    """
-
+def _send_request(frame, prompt, max_retries=5):
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     image = Image.fromarray(rgb)
 
@@ -38,7 +31,7 @@ def analyze_scene(frame, question, max_retries=5):
             response = client.models.generate_content(
                 model=MODEL_NAME,
                 contents=[
-                    question,
+                    prompt,
                     image
                 ]
             )
@@ -48,7 +41,6 @@ def analyze_scene(frame, question, max_retries=5):
         except errors.APIError as e:
 
             if e.code in [429, 503]:
-
                 print(
                     f"[Gemini] API busy ({e.code}). "
                     f"Retrying in {backoff_time}s "
@@ -71,4 +63,33 @@ def analyze_scene(frame, question, max_retries=5):
         "provider": "gemini"
     }
 
-    return json.dumps(fallback, indent=4)
+    return json.dumps(fallback)
+
+
+def describe_scene(frame):
+    """
+    Automatic Scene Understanding using Gemini.
+    Returns the standardized scene JSON.
+    """
+    return _send_request(frame, SCENE_PROMPT)
+
+
+def answer_question(frame, question):
+    """
+    Answer a user's question about the current camera frame.
+    """
+    prompt = f"""
+{QUESTION_PROMPT}
+
+User Question:
+{question}
+"""
+
+    return _send_request(frame, prompt)
+
+
+def analyze_scene(frame, question):
+    """
+    Backward-compatible function used by existing modules.
+    """
+    return _send_request(frame, question)

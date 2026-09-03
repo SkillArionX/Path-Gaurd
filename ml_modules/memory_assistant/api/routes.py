@@ -1,11 +1,11 @@
-﻿"""API routes for the AI Memory & Conversation module."""
+"""API routes for the AI Memory & Conversation module."""
 
 import base64
 import logging
 
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 
-from app.api.schemas import (
+from ml_modules.memory_assistant.api.schemas import (
     AudioChatRequest,
     AudioChatResponse,
     ChatRequest,

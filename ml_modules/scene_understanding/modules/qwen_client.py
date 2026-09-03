@@ -1,10 +1,10 @@
-import os
+﻿import os
 import cv2
 import base64
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from modules.prompt import SCENE_PROMPT, QUESTION_PROMPT
+from ml_modules.scene_understanding.modules.prompt import SCENE_PROMPT, QUESTION_PROMPT
 
 load_dotenv()
 
@@ -20,7 +20,7 @@ def _send_request(frame, prompt):
     image_base64 = base64.b64encode(buffer).decode("utf-8")
 
     response = client.chat.completions.create(
-        model="qwen/qwen2.5-vl-72b-instruct",
+        model="openrouter/free",
         messages=[
             {
                 "role": "user",
@@ -38,7 +38,8 @@ def _send_request(frame, prompt):
                 ]
             }
         ],
-        max_tokens=100,
+        max_tokens=300,
+        extra_body={'reasoning': {'effort': 'none'}},
         temperature=0.2,
     )
 
@@ -89,15 +90,20 @@ Keep the answer concise and suitable for text-to-speech.
 """
 
     response = client.chat.completions.create(
-        model="qwen/qwen2.5-vl-72b-instruct",
+        model="openrouter/free",
         messages=[
             {
                 "role": "user",
                 "content": prompt
             }
         ],
-        max_tokens=100,
+        max_tokens=300,
+        extra_body={'reasoning': {'effort': 'none'}},
         temperature=0.2,
     )
 
     return response.choices[0].message.content
+
+
+
+

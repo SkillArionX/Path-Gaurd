@@ -1,6 +1,6 @@
-﻿from fastapi import FastAPI
+from fastapi import FastAPI
 
-from app.api.routes import router
+from ml_modules.memory_assistant.api.routes import router
 from ml_modules.memory_assistant.config import settings
 
 app = FastAPI(title=settings.app_name)

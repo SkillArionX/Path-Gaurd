@@ -1,4 +1,4 @@
-﻿"""Application configuration loaded from environment variables."""
+"""Application configuration loaded from environment variables."""
 
 from pydantic_settings import BaseSettings
 
@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     api_prefix: str = "/api"
 
     gemini_api_key: str = ""
-    gemini_model: str = "gemini-2.5-flash"
+    gemini_model: str = "gemini-3.6-flash"
     gemini_stt_model: str = "gemini-2.5-flash"
     gemini_tts_model: str = "gemini-2.5-flash-preview-tts"
     gemini_timeout: float = 15.0
@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     max_location_history: int = 5
     max_navigation_history: int = 5
 
-    model_config = {"env_prefix": "PATHGUARD_", "env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
+    model_config = {"env_prefix": "", "env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
 
 settings = Settings()
